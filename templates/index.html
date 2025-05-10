@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human-in-the-Loop System</title>
+</head>
+<body>
+    <h1>AI Help Requests</h1>
+    <ul>
+        {% for request in requests %}
+            <li>
+                Question: {{ request['question'] }} <br>
+                Status: {{ request['status'] }} <br>
+                Response: {{ request['response'] }} <br>
+                {% if request['status'] == 'Pending' %}
+                    <a href="/resolve_request/{{ loop.index0 }}/Your%20Response%20Here">Resolve</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Simulate Incoming Call</h2>
+    <form action="/receive_call/what%20are%20your%20hours%3F">
+        <button type="submit">What are your hours?</button>
+    </form>
+    <form action="/receive_call/where%20are%20you%20located%3F">
+        <button type="submit">Where are you located?</button>
+    </form>
+    <form action="/receive_call/what%20is%20your%20price%20for%20a%20haircut%3F">
+        <button type="submit">What is your price for a haircut?</button>
+    </form>
+</body>
+</html>
